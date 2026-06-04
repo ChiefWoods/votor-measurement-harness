@@ -1,6 +1,6 @@
 # Votor Measurement Harness
 
-Laptop-safe jitter harness for comparing Agave banking-stage-shaped delays against Alpenglow/Votor timing budgets.
+Jitter harness for comparing Agave banking-stage-shaped delays against Alpenglow/Votor timing budgets.
 
 ## Source Boundary
 
