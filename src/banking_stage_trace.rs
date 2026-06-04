@@ -52,14 +52,24 @@ impl StageTimer {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BankingLatencyRecord {
+    /// Harness profile that produced this record.
     pub profile: String,
+    /// Number of simulated transactions/items in this batch.
     pub batch_size: usize,
+    /// Time from simulated enqueue/ingress until first processing attempt.
     pub queue_delay_us: u64,
+    /// Time spent constructing the simulated batch.
     pub build_batch_us: u64,
+    /// Time spent in account-locking and scheduling-shaped work.
     pub lock_us: u64,
+    /// Time spent in transaction-execution-shaped work.
     pub execution_us: u64,
+    /// Time spent recording results and bookkeeping.
     pub record_us: u64,
+    /// End-to-end time for the simulated batch pipeline.
     pub total_us: u64,
+    /// Monotonic batch index used as a slot-like identifier.
     pub slot: u64,
+    /// Thread that emitted the record.
     pub thread: String,
 }

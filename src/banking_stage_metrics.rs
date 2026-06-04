@@ -2,16 +2,27 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 #[derive(Debug, Default)]
 pub struct BankingStageMetrics {
+    /// Sum of all observed queue delays in microseconds.
     pub queue_delay_us_sum: AtomicU64,
+    /// Maximum observed queue delay in microseconds.
     pub queue_delay_us_max: AtomicU64,
+    /// Sum of all observed batch-construction times in microseconds.
     pub build_batch_us_sum: AtomicU64,
+    /// Maximum observed batch-construction time in microseconds.
     pub build_batch_us_max: AtomicU64,
+    /// Sum of all observed account-lock/scheduling-shaped times in microseconds.
     pub lock_us_sum: AtomicU64,
+    /// Maximum observed account-lock/scheduling-shaped time in microseconds.
     pub lock_us_max: AtomicU64,
+    /// Sum of all observed transaction-execution-shaped times in microseconds.
     pub execution_us_sum: AtomicU64,
+    /// Maximum observed transaction-execution-shaped time in microseconds.
     pub execution_us_max: AtomicU64,
+    /// Sum of all observed result-recording/bookkeeping times in microseconds.
     pub record_us_sum: AtomicU64,
+    /// Maximum observed result-recording/bookkeeping time in microseconds.
     pub record_us_max: AtomicU64,
+    /// Number of completed simulated batches recorded by the harness.
     pub processed_batches: AtomicU64,
 }
 
