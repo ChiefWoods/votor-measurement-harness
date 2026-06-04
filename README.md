@@ -24,15 +24,7 @@ Additional context: the paper's latency simulations discuss common-case finality
 
 ## Commands
 
-```bash
-cargo build
-cargo test
-bash scripts/run_banking_jitter_harness.sh
-PROFILE=cpu_saturation bash scripts/run_banking_jitter_harness.sh
-PROFILE=io_stall bash scripts/run_banking_jitter_harness.sh
-PROFILE=allocator_pressure bash scripts/run_banking_jitter_harness.sh
-cargo run --bin summarize_banking_jitter -- artifacts/banking-jitter/*/trace.json
-```
+Available commands are defined in `justfile`. Run `just` to list them.
 
 Raw traces are written to `artifacts/banking-jitter/<profile>/trace.json`; the Rust summarizer writes `artifacts/banking-jitter/summary.md`.
 
