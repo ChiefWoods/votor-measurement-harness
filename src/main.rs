@@ -17,9 +17,13 @@ use votor_measurement_harness::{
 
 #[derive(Clone, Copy, Debug)]
 enum Profile {
+    // normal run
     Baseline,
+    // CPU scheduling pressure
     CpuSaturation,
+    // blocking I/O-shaped delay
     IoStall,
+    // allocation-heavy batch construction
     AllocatorPressure,
 }
 
@@ -310,6 +314,7 @@ fn simulate_record_results(profile: Profile, slot: u64, io_file: Option<&mut Fil
     Ok(())
 }
 
+/// Arbitrary operations to simulate a CPU-bound workload.
 fn cpu_work(iterations: u64) {
     let mut acc = 0_u64;
     for value in 0..iterations {
@@ -318,6 +323,7 @@ fn cpu_work(iterations: u64) {
     black_box(acc);
 }
 
+/// Spawn a number of worker threads to simulate CPU pressure.
 fn spawn_cpu_pressure_workers() -> Vec<thread::JoinHandle<()>> {
     let workers = thread::available_parallelism()
         .map(|count| count.get().saturating_sub(1).min(4))
